@@ -1,20 +1,35 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 
-const title = (text) => {
-
+const noteTitle = (nTitle) => { 
+  return(
+    <h2>{nTitle.title}</h2>
+  )
 }
 
-const note = (text) => {
-
+const noteText = (nText) => {
+  return (
+    <p>{nText.note}</p>
+  )
 }
 
 const fullNote = (note) => {
+  return (
+    <div>
+      {note.Note.map(noteTitle)}
+      {note.Note.map(noteText)}
+    </div>
+  )
 
 }
 
-const fullJournal = () => {
-  
+const fullJournal = (full) => {
+  return (
+  <div>
+    {full.map(fullNote)}
+  </div>
+  )
+
 }
 
 const App = () => {
@@ -30,6 +45,7 @@ const App = () => {
   return (
     <div>
       <h1>Journal</h1>
+      {fullJournal(journal)}
 
     </div>
   );
