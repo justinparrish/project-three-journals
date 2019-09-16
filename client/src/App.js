@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'antd/dist/antd.css'
 
-function App() {
+const title = (text) => {
+
+}
+
+const note = (text) => {
+
+}
+
+const fullNote = (note) => {
+
+}
+
+const fullJournal = () => {
+  
+}
+
+const App = () => {
+  const journal = [{
+    user : {username: "justin", pin: 8989},
+    regitser: {name: "Justin Parrish", age: 19, 
+                state: "GA", email:"justin@gmail.com",
+                username:"justin", pin: 8989} ,
+    Note: [
+          {title: "my login", note: "username is justin and pin is 0000"}
+          ]
+  }]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Journal</h1>
+
     </div>
   );
 }
