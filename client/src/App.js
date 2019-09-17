@@ -2,7 +2,7 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 import { Typography } from 'antd';
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import './App.css'
 
@@ -16,35 +16,20 @@ import Journal from './components/Journal'
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
 const { SubMenu } = Menu;
-/*
-class Sider extends React.Component {
-  state = {
-    collapsed : false
-  }
 
-  onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
-
-  render () {
-    return (
-      
-    )
-  }
-}
-*/
 //Code
 
 class App extends React.Component {
-  
+
   render() {
     return (
-      <div className="">
-
-      <Journal />
-
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/registration/2" component={UserCredentialsForm} />
+          <Route exact path="/registration/1" component={RegistrationForm} />
+          <Route exact path="/note" component={NoteForm} />
+        </Switch>
+      </Router>
     );
   }
 }
