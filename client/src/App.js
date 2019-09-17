@@ -72,6 +72,8 @@ class App extends React.Component {
     this.setState({ journals })
   }
 
+
+
   render() {
     console.log(this.state.journal)
     return (
@@ -83,9 +85,10 @@ class App extends React.Component {
           addNewNote={this.addNote} />
       <h1>Registration Form Test</h1>
         <RegistrationForm
-          createNewUser={this.addUserRegistration} />
+          createNewRegistrationInfo={this.addUserRegistration} />
       <h1>User Credentials Form Test</h1>
-        <UserCredentialsForm />
+        <UserCredentialsForm 
+          createNewUse/>
 
       </div>
     );
