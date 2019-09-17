@@ -1,10 +1,10 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 
-// import JournalNote from './components/journal-note'
+import NoteForm from './components/NoteForm.js'
 
-const noteTitle = (nTitle) => { 
-  return(
+const noteTitle = (nTitle) => {
+  return (
     <h2>{nTitle.title}</h2>
   )
 }
@@ -27,30 +27,36 @@ const fullNote = (note) => {
 
 const fullJournal = (full) => {
   return (
-  <div>
-    {full.map(fullNote)}
-  </div>
+    <div>
+      {full.map(fullNote)}
+    </div>
   )
 
 }
 
-const App = () => {
-  const journal = [{
-    user : {username: "justin", pin: 8989},
-    regitser: {name: "Justin Parrish", age: 19, 
-                state: "GA", email:"justin@gmail.com",
-                username:"justin", pin: 8989} ,
-    Note: [
-          {title: "my login", note: "username is justin and pin is 0000"}
-          ]
-  }]
-  return (
-    <div>
-      <h1>Journal</h1>
-      {fullJournal(journal)}
+class App extends React.Component {
+  state = {
+    journal : [{
+      user: { username: "justin", pin: 8989 },
+      regitser: {
+        name: "Justin Parrish", age: 19,
+        state: "GA", email: "justin@gmail.com",
+        username: "justin", pin: 8989
+      },
+      Note: [
+        { title: "my login", note: "username is justin and pin is 0000" }
+      ]
+    }]
+  }
+  render() {
+    return (
+      <div>
+        <h1>Add note</h1>
+        {fullJournal(this.state.journal)}
+        <NoteForm />
 
-    </div>
-  );
+      </div>
+    );
+  }
 }
-
 export default App;
