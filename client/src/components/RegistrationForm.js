@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Typography } from 'antd';
 import 'antd/dist/antd.css'
 import {
     Form,
@@ -13,6 +14,8 @@ import {
     Button,
     AutoComplete,
 } from 'antd';
+
+const { Title } = Typography;
 
 
 export default class RegistrationForm extends Component {

@@ -1,22 +1,49 @@
+//File Imports
 import React from 'react';
 import 'antd/dist/antd.css'
+import { Typography } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import './App.css'
 
-
+//Component Imports
 import NoteForm from './components/NoteForm.js'
 import RegistrationForm from './components/RegistrationForm'
 import UserCredentialsForm from './components/UserCredentialsForm'
 
+//Layout
+const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography;
+const { SubMenu } = Menu;
+/*
+class Sider extends React.Component {
+  state = {
+    collapsed : false
+  }
+
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
+
+  render () {
+    return (
+      
+    )
+  }
+}
+*/
+//Code
 const userName = (name) => {
   return (
-    <h1>{name.username}</h1>
+    <Title level={4}>{name.username}</Title>
   )
 }
 
 const noteTextAndTitle = (nText) => {
   return (
-    <div>
+    <div className="note">
 
-      <h2>{nText.title}</h2>
+      <Title level={4}>{nText.title}</Title>
       <p>{nText.note}</p>
     </div>
   )
@@ -87,18 +114,18 @@ class App extends React.Component {
     return (
       <div className="">
 
-        <h1>Add note</h1>
+        <Title level={3}>Add note</Title>
         {fullJournal(this.state.journal)}
 
-        <h1>Note Form Test</h1>
+        <Title>Note Form Test</Title>
         <NoteForm
           addNewNote={this.addNote} />
 
-        <h1>Registration Form Test</h1>
+        <Title>Registration Form Test</Title>
         <RegistrationForm
           createNewRegistrationInfo={this.addUserRegistration} />
 
-        <h1>User Credentials Form Test</h1>
+        <Title>User Credentials Form Test</Title>
         <UserCredentialsForm
           createNewUser={this.addUser} />
 
