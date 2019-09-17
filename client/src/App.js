@@ -3,6 +3,7 @@ import 'antd/dist/antd.css'
 
 import NoteForm from './components/NoteForm.js'
 import RegistrationForm from './components/RegistrationForm'
+import UserCredentialsForm from './components/UserCredentialsForm'
 
 const userName = (name) => {
   return (
@@ -47,8 +48,7 @@ class App extends React.Component {
       ],
       regitser: [{
         name: "Justin Parrish", age: 19,
-        state: "GA", email: "justin@gmail.com",
-        username: "justin", pin: 8989
+        state: "GA", email: "justin@gmail.com"
       }],
       Note: [
         { title: "my login", note: "username is justin and pin is 0000" }
@@ -64,7 +64,7 @@ class App extends React.Component {
     this.setState({ journals })
   }
 
-  addUser = (newUser) => {
+  addUserRegistration = (newUser) => {
     let journals = { ...this.state.journal[0] }
 
     journals.regitser.push(newUser)
@@ -78,11 +78,14 @@ class App extends React.Component {
       <div>
         <h1>Add note</h1>
         {fullJournal(this.state.journal)}
+        <h1>Note Form Test</h1>
         <NoteForm
           addNewNote={this.addNote} />
-
+      <h1>Registration Form Test</h1>
         <RegistrationForm
-          createNewUser={this.addUser} />
+          createNewUser={this.addUserRegistration} />
+      <h1>User Credentials Form Test</h1>
+        <UserCredentialsForm />
 
       </div>
     );
