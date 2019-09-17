@@ -1,6 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 
+// import JournalNote from './components/journal-note'
+
 const noteTitle = (nTitle) => { 
   return(
     <h2>{nTitle.title}</h2>
