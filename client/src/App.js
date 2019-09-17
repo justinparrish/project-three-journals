@@ -61,6 +61,8 @@ class App extends React.Component {
         {fullJournal(this.state.journal)}
         <NoteForm
           addNewNote={this.addNote} />
+        
+        <RegistrationForm />
 
       </div>
     );
