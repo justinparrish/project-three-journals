@@ -20,7 +20,7 @@ export default class RegistrationForm extends Component {
     handleSubmit = (evnt) => {
         evnt.preventDefault()
 
-        this.props.createNewUser(this.state.register)
+        this.props.createNewRegistrationInfo(this.state.register)
     }
 
     render() {
