@@ -36,7 +36,7 @@ const fullJournal = (full) => {
 
 class App extends React.Component {
   state = {
-    journal : [{
+    journal: [{
       user: { username: "justin", pin: 8989 },
       regitser: {
         name: "Justin Parrish", age: 19,
@@ -48,12 +48,22 @@ class App extends React.Component {
       ]
     }]
   }
+
+  addNote = (newNote) => {
+    let journals = {...this.state.journal[0]}
+
+    journals.Note.push(newNote)
+
+    this.setState({ journals })
+  }
+
   render() {
     return (
       <div>
         <h1>Add note</h1>
         {fullJournal(this.state.journal)}
-        <NoteForm />
+        <NoteForm
+          addNewNote={this.addNote} />
 
       </div>
     );
