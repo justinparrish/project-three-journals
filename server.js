@@ -47,13 +47,17 @@ app.use(methodOverride('_method'))
  * use the `./public` directory to host static resources such as css and
  * image files 
  */
-app.use(express.static(__dirname+"/public"))
+app.use(express.static(__dirname+"/client/build"))
 
+
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
 /* Step 3.b
  *
  * set the view engine of express to use the hbs (handlebars) package 
  */
-app.set('view engine', 'hbs')
+
 
 
 /* Step 4
