@@ -5,8 +5,7 @@ export default class RegistrationForm extends Component {
     state = {
         register: {
             name: String, age: Number,
-            state: String, email: String,
-            username: String, pin: Number
+            state: String, email: String
           }
     }
 
@@ -36,11 +35,7 @@ export default class RegistrationForm extends Component {
                     <input type="text" name="state" onChange={this.handleInputValues}/>
                     <label>Email</label>
                     <input type="email" name="email" onChange={this.handleInputValues}/>
-                    <label>Username</label>
-                    <input type="text" name="username" onChange={this.handleInputValues}/>
-                    <label>Pin</label>
-                    <input type="number" name="pin" onChange={this.handleInputValues}/>
-                    <input type="submit" value="Create Account" />
+                    <input type="submit" value="Next: Create Credentials" />
                 </form>
             </div>
         )
