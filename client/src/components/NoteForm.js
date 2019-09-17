@@ -50,7 +50,9 @@ export default class NoteForm extends Component {
                             onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Input type="submit" value="Add Note" />
+                        <Button type="primary" htmlType="submit">
+                            Add Note
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>
