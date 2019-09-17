@@ -1,6 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 
+
 import NoteForm from './components/NoteForm.js'
 import RegistrationForm from './components/RegistrationForm'
 import UserCredentialsForm from './components/UserCredentialsForm'
@@ -84,15 +85,19 @@ class App extends React.Component {
   render() {
     console.log(this.state.journal)
     return (
-      <div>
+      <div className="">
+
         <h1>Add note</h1>
         {fullJournal(this.state.journal)}
+
         <h1>Note Form Test</h1>
         <NoteForm
           addNewNote={this.addNote} />
+
         <h1>Registration Form Test</h1>
         <RegistrationForm
           createNewRegistrationInfo={this.addUserRegistration} />
+
         <h1>User Credentials Form Test</h1>
         <UserCredentialsForm
           createNewUser={this.addUser} />
