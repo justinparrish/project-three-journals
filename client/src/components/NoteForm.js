@@ -23,9 +23,11 @@ export default class NoteForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+                    <label>Title:</label>
                     <input type="text" name="title" 
                         placeholder="Title of note"
                         onChange={this.handleInputValues}/>
+                    <label>Note:</label>
                     <input type="text" name="note" 
                         placeholder="What's on your mind?"
                         onChange={this.handleInputValues}/>
