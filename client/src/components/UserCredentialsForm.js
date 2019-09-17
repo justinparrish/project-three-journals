@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class UserCredentialsForm extends Component{
     state = {
-        user: {username: String, Pin: Number}
+        user: {username: String, pin: Number}
     }
 
 
