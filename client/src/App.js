@@ -3,23 +3,20 @@ import 'antd/dist/antd.css'
 
 import NoteForm from './components/NoteForm.js'
 
-const noteTitle = (nTitle) => {
-  return (
-    <h2>{nTitle.title}</h2>
-  )
-}
 
-const noteText = (nText) => {
+const noteTextAndTitle = (nText) => {
   return (
+    <span>
+    <h2>{nText.title}</h2>
     <p>{nText.note}</p>
+    </span>
   )
 }
 
 const fullNote = (note) => {
   return (
     <div>
-      {note.Note.map(noteTitle)}
-      {note.Note.map(noteText)}
+      {note.Note.map(noteTextAndTitle)}
     </div>
   )
 
