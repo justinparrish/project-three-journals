@@ -11,6 +11,7 @@ import NoteForm from './components/NoteForm.js'
 import RegistrationForm from './components/RegistrationForm'
 import UserCredentialsForm from './components/UserCredentialsForm'
 import Journal from './components/Journal'
+import HomePage from './components/HomePage'
 
 //Layout
 const { Header, Content, Footer, Sider } = Layout;
@@ -25,9 +26,10 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/registration/2" component={UserCredentialsForm} />
           <Route exact path="/registration/1" component={RegistrationForm} />
-          <Route exact path="/note" component={NoteForm} />
+          <Route exact path="/journal" component={Journal} />
         </Switch>
       </Router>
     );

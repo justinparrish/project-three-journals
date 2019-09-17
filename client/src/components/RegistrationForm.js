@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
@@ -58,7 +59,7 @@ export default class RegistrationForm extends Component {
                         <Input type="email" name="email" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" href="/registration/2">
                             Next: Create Credentials
                         </Button>
                     </Form.Item>

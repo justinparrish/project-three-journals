@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Typography } from 'antd';
+import { Typography } from 'antd'
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,

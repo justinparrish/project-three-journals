@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
@@ -49,7 +50,7 @@ export default class UserCredentialsForm extends Component {
                         <Input type="number" name="pin" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" href="/journal">
                             Complete
                         </Button>
                     </Form.Item>
