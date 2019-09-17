@@ -1,4 +1,19 @@
 import React, { Component } from 'react'
+import 'antd/dist/antd.css'
+import {
+    Form,
+    Input,
+    Tooltip,
+    Icon,
+    Cascader,
+    Select,
+    Row,
+    Col,
+    Checkbox,
+    Button,
+    AutoComplete,
+} from 'antd';
+
 
 export default class UserCredentialsForm extends Component {
     state = {
@@ -23,13 +38,17 @@ export default class UserCredentialsForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username</label>
-                    <input type="text" name="username" onChange={this.handleInputValues} />
-                    <label>Pin</label>
-                    <input type="number" name="pin" onChange={this.handleInputValues} />
-                    <input type="submit" value="Finish" />
-                </form>
+                <Form layout="inline" onSubmit={this.handleSubmit}>
+                    <Form.Item label="Username">
+                        <Input type="text" name="username" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item label="Pin">
+                        <Input type="number" name="pin" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item>
+                        <Input type="submit" value="Finish" />
+                    </Form.Item>
+                </Form>
             </div>
         )
     }

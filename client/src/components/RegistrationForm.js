@@ -1,4 +1,19 @@
 import React, { Component } from 'react'
+import 'antd/dist/antd.css'
+import {
+    Form,
+    Input,
+    Tooltip,
+    Icon,
+    Cascader,
+    Select,
+    Row,
+    Col,
+    Checkbox,
+    Button,
+    AutoComplete,
+} from 'antd';
+
 
 export default class RegistrationForm extends Component {
 
@@ -26,17 +41,23 @@ export default class RegistrationForm extends Component {
     render() {
         return (
             <div className="registration">
-                <form onSubmit={this.handleSubmit}>
-                    <label>Name</label>
-                    <input type="text" name="name" onChange={this.handleInputValues} />
-                    <label>Age</label>
-                    <input type="number" name="age" onChange={this.handleInputValues} />
-                    <label>State</label>
-                    <input type="text" name="state" onChange={this.handleInputValues} />
-                    <label>Email</label>
-                    <input type="email" name="email" onChange={this.handleInputValues} />
-                    <input type="submit" value="Next: Create Credentials" />
-                </form>
+                <Form layout="inline" onSubmit={this.handleSubmit}>
+                    <Form.Item label="Name">
+                        <Input type="text" name="name" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item label="Age">
+                        <Input type="number" name="age" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item label="State">
+                        <Input type="text" name="state" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item label="Email">
+                        <Input type="email" name="email" onChange={this.handleInputValues} />
+                    </Form.Item>
+                    <Form.Item>
+                        <Input type="submit" value="Next: Create Credentials" />
+                    </Form.Item>
+                </Form>
             </div>
         )
     }
