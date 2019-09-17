@@ -14,7 +14,7 @@ const userName = (name) => {
 const noteTextAndTitle = (nText) => {
   return (
     <div>
-      
+
       <h2>{nText.title}</h2>
       <p>{nText.note}</p>
     </div>
@@ -24,7 +24,7 @@ const noteTextAndTitle = (nText) => {
 const fullNote = (note) => {
   return (
     <div>
-    {note.user.map(userName)}
+      {note.user.map(userName)}
       {note.Note.map(noteTextAndTitle)}
     </div>
   )
@@ -90,12 +90,12 @@ class App extends React.Component {
         <h1>Note Form Test</h1>
         <NoteForm
           addNewNote={this.addNote} />
-      <h1>Registration Form Test</h1>
+        <h1>Registration Form Test</h1>
         <RegistrationForm
           createNewRegistrationInfo={this.addUserRegistration} />
-      <h1>User Credentials Form Test</h1>
-        <UserCredentialsForm 
-          createNewUser={this.addUser}/>
+        <h1>User Credentials Form Test</h1>
+        <UserCredentialsForm
+          createNewUser={this.addUser} />
 
       </div>
     );
