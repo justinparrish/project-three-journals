@@ -72,6 +72,13 @@ class App extends React.Component {
     this.setState({ journals })
   }
 
+  addUser = (newUser) => {
+    let journals = { ...this.state.journal[0] }
+
+    journals.user.push(newUser)
+
+    this.setState({ journals })
+  }
 
 
   render() {
@@ -88,7 +95,7 @@ class App extends React.Component {
           createNewRegistrationInfo={this.addUserRegistration} />
       <h1>User Credentials Form Test</h1>
         <UserCredentialsForm 
-          createNewUse/>
+          createNewUser={this.addUser}/>
 
       </div>
     );
