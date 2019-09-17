@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class NoteForm extends Component {
 
     state = {
-        Note: {title: "", note: ""}
+        Note: {title: String, note: String}
     }
 
     handleInputValues = (evnt) => {
