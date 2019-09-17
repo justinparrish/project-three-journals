@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css'
 
 import NoteForm from './components/NoteForm.js'
-
+import RegistrationForm from './components/RegistrationForm'
 
 const noteTextAndTitle = (nText) => {
   return (
