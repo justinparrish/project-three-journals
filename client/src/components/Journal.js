@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css'
-import { Typography } from 'antd';
+import { Typography, Avatar } from 'antd';
 // import { Link } from 'react-router-dom';
 // import {BrowserRouter as Router} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
@@ -30,14 +30,6 @@ const noteTitle = (nTitle) => {
   )
 }
 
-const notesContainer = (list) => {
-  return (
-    <SubMenu key="sub2" title=
-      {<span><Icon type="note" /><span>Notes</span></span>} >
-      {list.title.map(noteTitle)}
-    </SubMenu>
-  )
-}
 
 const noteTextAndTitle = (nText) => {
   return (
@@ -78,84 +70,95 @@ const jornalContainer = (journals) => {
         </Menu>
       </Sider>
     </Layout>
-      )
-    }
-    
+  )
+}
+
 export default class Journal extends React.Component {
-        state = {
-          journal: [{
-            user: [
-              { username: "justin", pin: 8989 }
-            ],
-            register: [{
-              name: "Justin Parrish", age: 19,
-              state: "GA", email: "justin@gmail.com"
-            }],
-            Note: [
-              { title: "my login", note: "username is justin and pin is 0000" }
-            ]
-          }],
-          collasped: false
-        }
+  state = {
+    journal: [{
+      user: [
+        { username: "justin", pin: 8989 }
+      ],
+      register: [{
+        name: "Justin Parrish", age: 19,
+        state: "GA", email: "justin@gmail.com"
+      }],
+      Note: [
+        { title: "my login", note: "username is justin and pin is 0000" }
+      ]
+    }],
+    collasped: false
+  }
 
   onCollapse = collapsed => {
-        console.log(collapsed);
-      this.setState({collapsed});
-    };
-  
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
+
   addNote = (newNote) => {
-        let journals = {...this.state.journal[0]}
+    let journals = { ...this.state.journal[0] }
 
-      journals.Note.push(newNote)
-  
-    this.setState({journals})
-    }
-  
+    journals.Note.push(newNote)
+
+    this.setState({ journals })
+  }
+
   addUserRegistration = (newUser) => {
-        let journals = {...this.state.journal[0]}
+    let journals = { ...this.state.journal[0] }
 
-      journals.regitser.push(newUser)
-  
-    this.setState({journals})
-    }
-  
+    journals.regitser.push(newUser)
+
+    this.setState({ journals })
+  }
+
   addUser = (newUser) => {
-        let journals = {...this.state.journal[0]}
+    let journals = { ...this.state.journal[0] }
 
-      journals.user.push(newUser)
-  
-    this.setState({journals})
-    }
-  
-  
+    journals.user.push(newUser)
+
+    this.setState({ journals })
+  }
+
+
   render() {
-        console.log(this.state.journal)
+    console.log(this.state.journal)
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+
               {/* First section of Side Bar */}
-              <Menu.Item key="1">
-                <Icon type="pie-chart" />
-                <span>User</span>
+              <Menu.Item key="8">
+                <Avatar shape="circle"size="small" icon="user" />
               </Menu.Item>
+
               {/* User Drop Down of Side Bar */}
-              <SubMenu key="sub1" title=
-                {<span><Icon type="user" /><span>User</span></span>} >
-                <Menu.Item key="3">Justin</Menu.Item>
+              <Menu.Item key="2">
+              <Icon type="plus" />
+              <span>Create New Note</span>
+              </Menu.Item>
+
+
+              <SubMenu key="sub2" title=
+                {<span><Icon type="note" /><span>Notes</span></span>} >
+                  <Menu.Item key="2"><Icon type="edit" />bkh</Menu.Item>
               </SubMenu>
+
               {/* Notes Drop Down of Side Bar */}
-              {notesContainer}
+            
               <SubMenu key="sub3" title=
                 {<span><Icon type="user" />
                   <span>Trash</span>
                 </span>} >
-                <Menu.Item key="3">asdsd</Menu.Item>
-                <Menu.Item key="4">asdsd</Menu.Item>
-                <Menu.Item key="5">asdsd</Menu.Item>
+                <Menu.Item key="3"><Icon type="delete" />asdsd</Menu.Item>
               </SubMenu>
+              <Menu.Item key="5">
+              <Icon type="setting" />
+              <span>Account Setting</span>
+              </Menu.Item>
+
             </Menu>
           </Sider>
           <Title level={3}>Add note</Title>
@@ -167,6 +170,6 @@ export default class Journal extends React.Component {
 
         </Layout>
       </div>
-      );
-    }
+    );
   }
+}
