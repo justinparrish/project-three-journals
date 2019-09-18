@@ -18,18 +18,10 @@ const UserSchema = new mongoose.Schema({
 })
 
 
-const UserCollection = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', UserSchema)
 
 
-const getUsers = () => UserCollection.find()
-
-const addUser = (newUser) => UserCollection.insertMany([newUser])
-
-const getUser = (id) => UserCollection.findById(id)
 
 
-module.exports = {
-  addUser,
-  getUser,
-  getUsers
-}
+
+module.exports = User
