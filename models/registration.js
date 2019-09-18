@@ -1,7 +1,7 @@
-const mongooose = require('mongoose')
+const mongoose = require('./connection')
 
 
-const RegistrationSchema = new mongooose.Schema ({
+const RegistrationSchema = new mongoose.Schema ({
     name : {
         type: String,
         require: true
@@ -23,10 +23,8 @@ const RegistrationSchema = new mongooose.Schema ({
     }
 })
 
-const RegistrationCollection = mongoose.model('Registration', RegistrationSchema)
+const Registration = mongoose.model('Registration', RegistrationSchema)
 
 
 
-module.exports = {
-    
-}
+module.exports = Registration

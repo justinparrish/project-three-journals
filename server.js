@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
 const methodOverride = require('method-override')
-
+const cors = require('cors')
 
 app.use(express.urlencoded({ extended: true }))
 
-
+app.use(cors())
 app.use(express.json())
-
 
 app.use(methodOverride('_method'))
 
@@ -21,9 +20,13 @@ app.get('/*', (req, res) => {
 
 
 //Routers & Routes
-const { userRouter } = require('./controllers/user.js')
+const userRouter = require('./controllers/user.js')
+const noteRouter = require('./controllers/note')
+const registrationRouter = require('./controllers/registration')
 
-app.use('/journal', userRouter)
+app.use('/user', userRouter)
+app.use('/note', noteRouter)
+app.use('/registration', registrationRouter)
 
 
 const PORT = process.env.PORT || 3000

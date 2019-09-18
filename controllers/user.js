@@ -1,17 +1,34 @@
 const express = require('express')
-const userApi = require('../models/user.js')
-const userRouter = express.Router()
+let User = require('../models/user.js')
+const router = express.Router()
 
+router.route('/').get((req, res) => {
+  User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err))
+});
 
-userRouter.get('/', (req, res) => {
-  res.send(userApi.getUsers())
+router.route('/add').post((req, res) => {
+  const username = req.body.username
+  const pin = Number(req.body.pin)
+
+  const newUser = new User({ username, pin })
+
+  newUser.save()
+    .then(() => res.json('User Added!'))
+    .catch(err => res.status(400).json('Error: ' + err))
 })
 
-userRouter.post('/', (req, res) => {
-  res.send(userApi.addUser(req.body))
+router.route('/edit/:id').put((req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.username = req.body.username
+      user.pin = Number(req.body.pin)
+
+      user.save()
+        .then(() => res.json('User Updated'))
+        .catch(err => res.send(400).json('Error: ' + err))
+    })
 })
 
-
-module.exports = {
-  userRouter
-}
+module.exports = router

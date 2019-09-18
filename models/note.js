@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('./connection')
 
 const NoteSchema = new mongoose.Schema ({
     title : {
@@ -9,9 +9,7 @@ const NoteSchema = new mongoose.Schema ({
     }
 })
 
-const NoteCollection = mongoose.model('Note', NoteSchema)
+const Note = mongoose.model('Note', NoteSchema)
 
 
-module.exports = {
-    
-}
+module.exports = Note
