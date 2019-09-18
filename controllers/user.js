@@ -1,17 +1,13 @@
 const express = require('express')
-const userApi = require('../models/user.js')
-const userRouter = express.Router()
+const User = require('../models/user.js')
+const router = express.Router()
 
-
-userRouter.get('/', (req, res) => {
-  res.send(userApi.getUsers())
-})
-
-userRouter.post('/', (req, res) => {
-  res.send(userApi.addUser(req.body))
+router.route('/').get((req,res) => {
+  User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err))
 })
 
 
-module.exports = {
-  userRouter
-}
+
+module.exports = User
