@@ -87,10 +87,10 @@ export default class Journal extends React.Component {
         { title: "my login", note: "username is justin and pin is 0000" }
       ]
     }],
-    collasped: false
+    collapsed: false
   }
 
-  onCollapse = collapsed => {
+  onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
@@ -125,7 +125,7 @@ export default class Journal extends React.Component {
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse} style={{borderRight: '#fff'}}>
+          <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{borderRight: '#fff'}}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
@@ -137,7 +137,7 @@ export default class Journal extends React.Component {
               {/* User Drop Down of Side Bar */}
               <Menu.Item key="2">
                 <Icon type="plus" />
-                <span>Create New Note</span>
+                <span ><a href="/note">Create New Note</a></span>
               </Menu.Item>
 
 

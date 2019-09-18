@@ -22,8 +22,12 @@ app.get('/*', (req, res) => {
 
 //Routers & Routes
 const { userRouter } = require('./controllers/user.js')
+const { noteRouter } = require('./controllers/note.js')
+const { registrationRouter} = require('./controllers/registration')
 
-app.use('/journal', userRouter)
+app.use('/user', userRouter)
+app.use('/note', noteRouter)
+app.use('/registration', registrationRouter)
 
 
 const PORT = process.env.PORT || 3000

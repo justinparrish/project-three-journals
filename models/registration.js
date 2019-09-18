@@ -23,10 +23,8 @@ const RegistrationSchema = new mongooose.Schema ({
     }
 })
 
-const RegistrationCollection = mongoose.model('Registration', RegistrationSchema)
+const Registration = mongoose.model('Registration', RegistrationSchema)
 
 
 
-module.exports = {
-    
-}
+module.exports = Registration
