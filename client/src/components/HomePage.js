@@ -4,7 +4,7 @@ import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import {BrowserRouter as Router} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
+import {Button} from 'antd';
 
 
 import NoteForm from './NoteForm.js'
@@ -20,7 +20,7 @@ export default class HomePage extends React.Component {
         return (
             <div>
                 <Title>Welcome to your Online Journal</Title>
-                <Link to="/registration/1">Get Started Now</Link>
+                <Button href="/registration/1" type="primary" >Get Started Now</Button>
             </div>
         )
     }
