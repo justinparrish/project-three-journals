@@ -1,7 +1,7 @@
-const mongooose = require('mongoose')
+const mongoose = require('./connection')
 
 
-const RegistrationSchema = new mongooose.Schema ({
+const RegistrationSchema = new mongoose.Schema ({
     name : {
         type: String,
         require: true
