@@ -125,29 +125,29 @@ export default class Journal extends React.Component {
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse}>
+          <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse} style={{borderRight: '#fff'}}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
               {/* First section of Side Bar */}
               <Menu.Item key="8">
-                <Avatar shape="circle"size="small" icon="user" />
+                <Avatar shape="circle" size="small" icon="user" />
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
               <Menu.Item key="2">
-              <Icon type="plus" />
-              <span>Create New Note</span>
+                <Icon type="plus" />
+                <span>Create New Note</span>
               </Menu.Item>
 
 
               <SubMenu key="sub2" title=
                 {<span><Icon type="note" /><span>Notes</span></span>} >
-                  <Menu.Item key="2"><Icon type="edit" />bkh</Menu.Item>
+                <Menu.Item key="2"><Icon type="edit" />bkh</Menu.Item>
               </SubMenu>
 
               {/* Notes Drop Down of Side Bar */}
-            
+
               <SubMenu key="sub3" title=
                 {<span><Icon type="user" />
                   <span>Trash</span>
@@ -155,21 +155,26 @@ export default class Journal extends React.Component {
                 <Menu.Item key="3"><Icon type="delete" />asdsd</Menu.Item>
               </SubMenu>
               <Menu.Item key="5">
-              <Icon type="setting" />
-              <span>Account Setting</span>
+                <Icon type="setting" />
+                <span>Account Setting</span>
               </Menu.Item>
 
             </Menu>
           </Sider>
-          <Title level={3}>Add note</Title>
-          {fullJournal(this.state.journal)}
+          <Layout>
+            <Header style={{ background: 'dark', padding: 0 }} />
+            <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>User</Breadcrumb.Item>
+              <Breadcrumb.Item>J</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}></div>
+              </Content>
+              <Footer style={{ textAlign: 'center' }}>GA ©2019 Created by Justin Parrish</Footer>
+            </Layout>
 
-          <Title>Note Form Test</Title>
-          <NoteForm
-            addNewNote={this.addNote} />
-
-        </Layout>
+          </Layout>
       </div>
-    );
-  }
-}
+        );
+      }
+    }
