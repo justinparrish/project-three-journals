@@ -21,8 +21,8 @@ app.get('/*', (req, res) => {
 
 //Routers & Routes
 const userRouter = require('./controllers/user.js')
-const noteRouter = require('./controllers/note')
-const registrationRouter = require('./controllers/registration')
+const noteRouter = require('./controllers/note.js')
+const registrationRouter = require('./controllers/registration.js')
 
 app.use('/user', userRouter)
 app.use('/note', noteRouter)
