@@ -16,12 +16,12 @@ router.route('/add').post((req, res) => {
 
   const newRegister = new Registration({ name, age, state, email })
 
-    newRegister.save()
-      .then(() => res.json('Successfully Registered'))
-      .catch(err => res.status(400).json('Error: ' + err))
+  newRegister.save()
+    .then(() => res.json('Successfully Registered'))
+    .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.route('edit/:id').put((req,res) => {
+router.route('edit/:id').put((req, res) => {
   Registration.findById(req.params.id)
     .then(register => {
       register.name = req.body.name
