@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
     Input,
-    Tooltip,
-    Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
+    // Tooltip,
+    // Icon,
+    // Cascader,
+    // Select,
+    // Row,
+    // Col,
+    // Checkbox,
     Button,
-    AutoComplete,
+    // AutoComplete,
 } from 'antd';
 
 const { Title } = Typography;
@@ -21,7 +21,7 @@ const { Title } = Typography;
 
 export default class UserCredentialsForm extends Component {
     state = {
-        user: { username: String, pin: Number }
+        user: { username: "", pin: "" }
     }
 
 
@@ -42,6 +42,7 @@ export default class UserCredentialsForm extends Component {
     render() {
         return (
             <div>
+                <Title level={1}>Set a Username and Pin</Title>
                 <Form layout="inline" onSubmit={this.handleSubmit}>
                     <Form.Item label="Username">
                         <Input type="text" name="username" onChange={this.handleInputValues} />

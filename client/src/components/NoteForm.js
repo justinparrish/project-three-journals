@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
     Input,
-    Tooltip,
-    Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
+    // Tooltip,
+    // Icon,
+    // Cascader,
+    // Select,
+    // Row,
+    // Col,
+    // Checkbox,
     Button,
-    AutoComplete,
+    // AutoComplete,
 } from 'antd';
 
 const { Title } = Typography;
@@ -22,7 +22,7 @@ const { Title } = Typography;
 export default class NoteForm extends Component {
 
     state = {
-        Note: { title: String, note: String }
+        Note: { title: "", note: "" }
     }
 
     handleInputValues = (evnt) => {
@@ -42,6 +42,7 @@ export default class NoteForm extends Component {
     render() {
         return (
             <div>
+                <Title level={1}>Add Your Note</Title>
                 <Form layout="inline" onSubmit={this.handleSubmit}>
                     <Form.Item label="Title:">
                         <Input type="text" name="title"

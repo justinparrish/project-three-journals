@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 import { Typography } from 'antd';
-import { Link } from 'react-router-dom';
-import {BrowserRouter as Router} from 'react-router-dom'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+// import { Link } from 'react-router-dom';
+// import {BrowserRouter as Router} from 'react-router-dom'
+// import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 
 
@@ -54,7 +54,7 @@ export default class App extends React.Component {
         user: [
           { username: "justin", pin: 8989 }
         ],
-        regitser: [{
+        register: [{
           name: "Justin Parrish", age: 19,
           state: "GA", email: "justin@gmail.com"
         }],

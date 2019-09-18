@@ -1,9 +1,9 @@
 //File Imports
 import React from 'react';
 import 'antd/dist/antd.css'
-import { Typography } from 'antd';
+// import { Typography } from 'antd';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+// import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import './App.css'
 
 //Component Imports
@@ -14,9 +14,9 @@ import Journal from './components/Journal'
 import HomePage from './components/HomePage'
 
 //Layout
-const { Header, Content, Footer, Sider } = Layout;
-const { Title } = Typography;
-const { SubMenu } = Menu;
+// const { Header, Content, Footer, Sider } = Layout;
+// const { Title } = Typography;
+// const { SubMenu } = Menu;
 
 //Code
 
