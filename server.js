@@ -19,10 +19,11 @@ app.get('/*', (req, res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
+
+//Routers & Routes
 const { userRouter } = require('./controllers/user.js')
 
-
-app.use('/user', userRouter)
+app.use('/journal', userRouter)
 
 
 const PORT = process.env.PORT || 3000

@@ -8,8 +8,7 @@ userRouter.get('/', (req, res) => {
 })
 
 userRouter.post('/', (req, res) => {
-  userApi.addUser(req.body)
-    .then(() => res.send(200))
+  res.send(userApi.addUser(req.body))
 })
 
 

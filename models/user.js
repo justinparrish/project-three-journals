@@ -21,11 +21,11 @@ const UserSchema = new mongoose.Schema({
 const UserCollection = mongoose.model('User', UserSchema)
 
 
-const getUsers = () => (UserCollection.find())
+const getUsers = () => UserCollection.find()
 
-const addUser = (newUser) => (UserCollection.insertMany([newUser]))
+const addUser = (newUser) => UserCollection.insertMany([newUser])
 
-const getUser = (id) => (UserCollection.findById(id))
+const getUser = (id) => UserCollection.findById(id)
 
 
 module.exports = {
