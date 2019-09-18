@@ -21,7 +21,7 @@ router.route('/add').post((req, res) => {
 })
 
 router.route('/edit/:id').put((req,res) => {
-    User.findById(req.body.id)
+    User.findById(req.params.id)
       .then(user => {
         user.username =req.body.username;
         user.pin = req.body.pin;
