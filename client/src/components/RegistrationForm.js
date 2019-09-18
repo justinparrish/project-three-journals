@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd';
+// import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
     Input,
-    Tooltip,
-    Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
+    // Tooltip,
+    // Icon,
+    // Cascader,
+    // Select,
+    // Row,
+    // Col,
+    // Checkbox,
     Button,
-    AutoComplete,
+    // AutoComplete,
 } from 'antd';
 
 const { Title } = Typography;
@@ -22,8 +23,10 @@ export default class RegistrationForm extends Component {
 
     state = {
         register: {
-            name: String, age: Number,
-            state: String, email: String
+            name: "", 
+            age: "",
+            state: "", 
+            email: ""
         }
     }
 
@@ -44,6 +47,7 @@ export default class RegistrationForm extends Component {
     render() {
         return (
             <div className="registration">
+                <Title level={1}>Tell Us About You</Title>
                 <Form layout="inline" onSubmit={this.handleSubmit}>
                     <Form.Item label="Name">
                         <Input type="text" name="name" onChange={this.handleInputValues} />
@@ -58,7 +62,7 @@ export default class RegistrationForm extends Component {
                         <Input type="email" name="email" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" href="/registration/2" >
                             Next: Create Credentials
                         </Button>
                     </Form.Item>
