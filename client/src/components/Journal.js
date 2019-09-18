@@ -33,8 +33,8 @@ const noteTitle = (nTitle) => {
 const notesContainer = (list) => {
   return (
     <SubMenu key="sub2" title=
-    {<span><Icon type="note" /><span>Notes</span></span>} >
-    {list.title.map(noteTitle)}
+      {<span><Icon type="note" /><span>Notes</span></span>} >
+      {list.title.map(noteTitle)}
     </SubMenu>
   )
 }
@@ -67,56 +67,69 @@ const fullJournal = (full) => {
   )
 
 }
+const jornalContainer = (journals) => {
+  return (
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse}>
+        <div className="logo" />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
+
+        </Menu>
+      </Sider>
+    </Layout>
+      )
+    }
+    
 export default class Journal extends React.Component {
-  state = {
-    journal: [{
-      user: [
-        { username: "justin", pin: 8989 }
-      ],
-      register: [{
-        name: "Justin Parrish", age: 19,
-        state: "GA", email: "justin@gmail.com"
-      }],
-      Note: [
-        { title: "my login", note: "username is justin and pin is 0000" }
-      ]
-    }],
-    collasped: false
-  }
+        state = {
+          journal: [{
+            user: [
+              { username: "justin", pin: 8989 }
+            ],
+            register: [{
+              name: "Justin Parrish", age: 19,
+              state: "GA", email: "justin@gmail.com"
+            }],
+            Note: [
+              { title: "my login", note: "username is justin and pin is 0000" }
+            ]
+          }],
+          collasped: false
+        }
 
   onCollapse = collapsed => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
-
+        console.log(collapsed);
+      this.setState({collapsed});
+    };
+  
   addNote = (newNote) => {
-    let journals = { ...this.state.journal[0] }
+        let journals = {...this.state.journal[0]}
 
-    journals.Note.push(newNote)
-
-    this.setState({ journals })
-  }
-
+      journals.Note.push(newNote)
+  
+    this.setState({journals})
+    }
+  
   addUserRegistration = (newUser) => {
-    let journals = { ...this.state.journal[0] }
+        let journals = {...this.state.journal[0]}
 
-    journals.regitser.push(newUser)
-
-    this.setState({ journals })
-  }
-
+      journals.regitser.push(newUser)
+  
+    this.setState({journals})
+    }
+  
   addUser = (newUser) => {
-    let journals = { ...this.state.journal[0] }
+        let journals = {...this.state.journal[0]}
 
-    journals.user.push(newUser)
-
-    this.setState({ journals })
-  }
-
-
+      journals.user.push(newUser)
+  
+    this.setState({journals})
+    }
+  
+  
   render() {
-    console.log(this.state.journal)
+        console.log(this.state.journal)
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
@@ -154,6 +167,6 @@ export default class Journal extends React.Component {
 
         </Layout>
       </div>
-    );
+      );
+    }
   }
-}
