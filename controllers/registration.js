@@ -1,5 +1,5 @@
 const express = require('express')
-const Registration = require('../models/registration')
+const Registration = require('../models/registration.js')
 const router = express.Router()
 
 router.route('/').get((req, res) => {
@@ -14,13 +14,9 @@ router.route('/add').post((req, res) => {
   const state = req.body.state
   const email = req.body.email
 
-  const newRegistration = new Registration({ 
-    name, 
-    age, 
-    state, 
-    email })
+  const newRegister = new Registration({ name, age, state, email })
 
-    newRegistration.save()
+    newRegister.save()
       .then(() => res.json('Successfully Registered'))
       .catch(err => res.status(400).json('Error: ' + err))
 })
@@ -41,4 +37,4 @@ router.route('edit/:id').put((req,res) => {
 })
 
 
-module.exports = Registration
+module.exports = router
