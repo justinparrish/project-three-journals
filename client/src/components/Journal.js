@@ -1,17 +1,11 @@
 import React from 'react';
 import 'antd/dist/antd.css'
 import { Typography, Avatar } from 'antd';
-// import { Link } from 'react-router-dom';
-// import {BrowserRouter as Router} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Modal, Button } from 'antd';
 
-
-
 import NoteForm from './NoteForm.js'
 import EditRegistrationInfo from './EditRegistrationInfo.js'
-// import RegistrationForm from './RegistrationForm'
-// import UserCredentialsForm from './UserCredentialsForm'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -19,15 +13,13 @@ const { Title } = Typography;
 
 const userName = (name) => {
   return (
-    <Title level={4}>{name.username}</Title>
+    <Title level={4}>{name.name}</Title>
   )
 }
 
-const noteTitle = (nTitle) => {
+const mapName = (name) => {
   return (
-    <div className="noteTitles">
-      <Menu.Item key="3">{nTitle.title}</Menu.Item>
-    </div>
+    <h4>{name.map(userName)}</h4>
   )
 }
 
@@ -59,19 +51,6 @@ const fullJournal = (full) => {
     </div>
   )
 
-}
-const jornalContainer = (journals) => {
-  return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={this.state.collasped} onCollapse={this.onCollapse}>
-        <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-
-
-        </Menu>
-      </Sider>
-    </Layout>
-  )
 }
 
 export default class Journal extends React.Component {
@@ -164,6 +143,7 @@ export default class Journal extends React.Component {
               {/* First section of Side Bar */}
               <Menu.Item key="8">
                 <Avatar shape="circle" size="small" icon="user" />
+                {mapName(this.state.journal)}
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
