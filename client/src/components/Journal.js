@@ -89,7 +89,8 @@ export default class Journal extends React.Component {
       ]
     }],
     collapsed: false,
-    visible: false
+    visible: false,
+    loading: false
   }
 
   onCollapse = (collapsed) => {
@@ -127,20 +128,19 @@ export default class Journal extends React.Component {
     });
   };
 
-  handleOk = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+  handleOk = () => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
   };
 
-  handleCancel = (e) => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
+  handleCancel = () => {
+    this.setState({ visible: false });
   };
+
   render() {
+    const { visible, loading } = this.state;
     console.log(this.state.journal)
     return (
       <div className="">
@@ -181,10 +181,18 @@ export default class Journal extends React.Component {
                 <Icon type="setting" />
                 <span >Account Setting</span>
                 <Modal
-                  title="Basic Modal"
-                  visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
+                  visible={visible}
+                  title="Title"
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancel}
+                  footer={[
+                    <Button key="back" onClick={this.handleCancel}>
+                      Return
+            </Button>,
+                    <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+                      Submit
+            </Button>,
+                  ]}
                 >
                   <EditRegistrationInfo
                     createNewRegistrationInfo={this.addUserRegistration}
@@ -207,7 +215,7 @@ export default class Journal extends React.Component {
                 <Breadcrumb.Item>Notes</Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                
+
                 {fullJournal(this.state.journal)}
               </div>
             </Content>
