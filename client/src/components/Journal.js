@@ -91,13 +91,19 @@ export default class Journal extends React.Component {
     collapsed: false,
     visible: false,
     loading: false,
-    newNote: true
+    newNote: true,
+    adminMode: true
   }
 
   toggleCreateNote = () => {
-    const newNote = !this.state.newNote;
-    this.setState({newNote});
+    const newNote = !this.state.newNote
+    this.setState({ newNote })
   };
+
+  toggleAdminMode = () => {
+    const adminMode = !this.state.adminMode
+    this.setState({ adminMode })
+  }
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
@@ -163,8 +169,32 @@ export default class Journal extends React.Component {
               {/* User Drop Down of Side Bar */}
               <Menu.Item key="2" onClick={this.toggleCreateNote}>
                 <Icon type="plus" />
-                <span >Create New Note</span>
+                {this.state.newNote ? <span>Hide Form</span> : <span >Create New Note</span>}
               </Menu.Item>
+
+              <Menu.Item onClick={this.toggleAdminMode}>
+                {this.state.adminMode ? <span><Icon type="unlock" />Admin</span> : <span><Icon type="lock" />User</span>}
+              </Menu.Item>
+
+              { this.state.adminMode ?
+              <SubMenu title=
+                {<span><Icon type="eye" />
+                <span>View User Info</span></span>}>
+                  <Menu.Item>Username:</Menu.Item>
+                  <Menu.Item>Pin:</Menu.Item>
+              </SubMenu>
+              : null}
+
+              { this.state.adminMode ?
+              <SubMenu title=
+                {<span><Icon type="eye" />
+                <span>View Account Info</span></span>}>
+                  <Menu.Item>Name:</Menu.Item>
+                  <Menu.Item>Age:</Menu.Item>
+                  <Menu.Item>State:</Menu.Item>
+                  <Menu.Item>Email:</Menu.Item>
+              </SubMenu>
+              : null}
 
 
               <SubMenu key="sub2" title=
@@ -206,13 +236,16 @@ export default class Journal extends React.Component {
                 </Modal>
               </Menu.Item>
 
+
+
+
             </Menu>
           </Sider>
           <Layout>
             <Header style={{ background: 'dark', padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
 
-              { this.state.newNote ? <NoteForm
+              {this.state.newNote ? <NoteForm
                 addNewNote={this.addNote} /> : null}
 
               <Breadcrumb style={{ margin: '16px 0' }}>
