@@ -1,11 +1,16 @@
 const mongoose = require('./connection')
 
+const ObjectID = mongoose.ObjectID
+
 const NoteSchema = new mongoose.Schema ({
     title : {
         type: String
     },
     note: {
         type: String
+    },
+    userId: {
+        type: ObjectID
     }
 })
 
