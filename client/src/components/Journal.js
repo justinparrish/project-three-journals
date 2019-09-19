@@ -142,9 +142,9 @@ export default class Journal extends React.Component {
 
   render() {
     const { visible, loading } = this.state;
-    console.log(this.state.journal[0].Note)
+    console.log(this.state.journal[0].register[0].name)
     return (
-      <div className="">
+      <div className="journal-container">
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ borderRight: '#fff' }}>
             <div className="logo" />
@@ -163,15 +163,15 @@ export default class Journal extends React.Component {
               </Menu.Item>
 
               <Menu.Item onClick={this.toggleAdminMode}>
-                {this.state.adminMode ? <span><Icon type="unlock" />Admin</span> : <span><Icon type="lock" />User</span>}
+                {this.state.adminMode ? <span><Icon type="unlock" /> Admin</span> : <span><Icon type="lock" />User</span>}
               </Menu.Item>
 
               { this.state.adminMode ?
               <SubMenu title=
                 {<span><Icon type="eye" />
                 <span>View User Info</span></span>}>
-                  <Menu.Item>Username:</Menu.Item>
-                  <Menu.Item>Pin:</Menu.Item>
+                  <Menu.Item>Username: {this.state.journal[0].user[0].username}</Menu.Item>
+                  <Menu.Item>Pin: {this.state.journal[0].user[0].pin}</Menu.Item>
               </SubMenu>
               : null}
 
@@ -179,10 +179,10 @@ export default class Journal extends React.Component {
               <SubMenu title=
                 {<span><Icon type="eye" />
                 <span>View Account Info</span></span>}>
-                  <Menu.Item>Name:</Menu.Item>
-                  <Menu.Item>Age:</Menu.Item>
-                  <Menu.Item>State:</Menu.Item>
-                  <Menu.Item>Email:</Menu.Item>
+                  <Menu.Item>Name: {this.state.journal[0].register[0].name}</Menu.Item>
+                  <Menu.Item>Age: {this.state.journal[0].register[0].age}</Menu.Item>
+                  <Menu.Item>State: {this.state.journal[0].register[0].state}</Menu.Item>
+                  <Menu.Item>Email: {this.state.journal[0].register[0].email}</Menu.Item>
               </SubMenu>
               : null}
 
