@@ -90,8 +90,14 @@ export default class Journal extends React.Component {
     }],
     collapsed: false,
     visible: false,
-    loading: false
+    loading: false,
+    newNote: true
   }
+
+  toggleCreateNote = () => {
+    const newNote = !this.state.newNote;
+    this.setState({newNote});
+  };
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
@@ -155,7 +161,7 @@ export default class Journal extends React.Component {
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
-              <Menu.Item key="2">
+              <Menu.Item key="2" onClick={this.toggleCreateNote}>
                 <Icon type="plus" />
                 <span >Create New Note</span>
               </Menu.Item>
@@ -206,8 +212,8 @@ export default class Journal extends React.Component {
             <Header style={{ background: 'dark', padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
 
-              <NoteForm
-                addNewNote={this.addNote} />
+              { this.state.newNote ? <NoteForm
+                addNewNote={this.addNote} /> : null}
 
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
