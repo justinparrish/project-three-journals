@@ -14,21 +14,13 @@ import {Button} from 'antd';
 const { Title } = Typography;
 
 export default class HomePage extends React.Component {
-    state = {
-        loading: false
-    }
 
-    toggleLoadingButton = () => {
-        const loading = !this.state.loading
-
-        this.setState({ loading })
-    }
 
     render() {
         return (
             <div>
                 <Title>Welcome to your Online Journal</Title>
-                <Button href="/registration/1" type="primary" >
+                <Button href="/registration/1" type="primary">
                     Get Started Now
                 </Button>
             </div>

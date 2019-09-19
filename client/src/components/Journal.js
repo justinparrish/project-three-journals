@@ -4,11 +4,12 @@ import { Typography, Avatar } from 'antd';
 // import { Link } from 'react-router-dom';
 // import {BrowserRouter as Router} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
+import { Modal, Button } from 'antd';
 
 
 
 import NoteForm from './NoteForm.js'
+import EditRegistrationInfo from './EditRegistrationInfo.js'
 // import RegistrationForm from './RegistrationForm'
 // import UserCredentialsForm from './UserCredentialsForm'
 
@@ -35,7 +36,7 @@ const noteTextAndTitle = (nText) => {
   return (
     <div className="note">
 
-      <Title level={4}>{nText.title}</Title>
+      <Title level={4}>{nText.title}<Icon type="delete" /></Title>
       <p>{nText.note}</p>
     </div>
   )
@@ -44,7 +45,7 @@ const noteTextAndTitle = (nText) => {
 const fullNote = (note) => {
   return (
     <div>
-      {note.user.map(userName)}
+      {/* {note.user.map(userName)} */}
       {note.Note.map(noteTextAndTitle)}
     </div>
   )
@@ -87,7 +88,8 @@ export default class Journal extends React.Component {
         { title: "my login", note: "username is justin and pin is 0000" }
       ]
     }],
-    collapsed: false
+    collapsed: false,
+    visible: false
   }
 
   onCollapse = (collapsed) => {
@@ -106,7 +108,7 @@ export default class Journal extends React.Component {
   addUserRegistration = (newUser) => {
     let journals = { ...this.state.journal[0] }
 
-    journals.regitser.push(newUser)
+    journals.register.push(newUser)
 
     this.setState({ journals })
   }
@@ -119,13 +121,31 @@ export default class Journal extends React.Component {
     this.setState({ journals })
   }
 
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
 
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
   render() {
     console.log(this.state.journal)
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{borderRight: '#fff'}}>
+          <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ borderRight: '#fff' }}>
             <div className="logo" />
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
@@ -137,13 +157,15 @@ export default class Journal extends React.Component {
               {/* User Drop Down of Side Bar */}
               <Menu.Item key="2">
                 <Icon type="plus" />
-                <span ><a href="/note">Create New Note</a></span>
+                <span >Create New Note</span>
               </Menu.Item>
 
 
               <SubMenu key="sub2" title=
-                {<span><Icon type="note" /><span>Notes</span></span>} >
-                <Menu.Item key="2"><Icon type="edit" />bkh</Menu.Item>
+                {<span><Icon type="paper-clip" /><span>Notes</span></span>} >
+                <Menu.Item key="3"><Icon type="edit" />Bills to be Paid</Menu.Item>
+                <Menu.Item key="4"><Icon type="edit" />Red Velvet</Menu.Item>
+
               </SubMenu>
 
               {/* Notes Drop Down of Side Bar */}
@@ -152,11 +174,22 @@ export default class Journal extends React.Component {
                 {<span><Icon type="user" />
                   <span>Trash</span>
                 </span>} >
-                <Menu.Item key="3"><Icon type="delete" />asdsd</Menu.Item>
+                <Menu.Item key="5"><Icon type="delete" />Paid Bills</Menu.Item>
+                <Menu.Item key="6"><Icon type="delete" />Thursday's Shopping List</Menu.Item>
               </SubMenu>
-              <Menu.Item key="5">
+              <Menu.Item key="7" onClick={this.showModal}>
                 <Icon type="setting" />
-                <span>Account Setting</span>
+                <span >Account Setting</span>
+                <Modal
+                  title="Basic Modal"
+                  visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+                >
+                  <EditRegistrationInfo
+                    createNewRegistrationInfo={this.addUserRegistration}
+                  />
+                </Modal>
               </Menu.Item>
 
             </Menu>
@@ -164,17 +197,25 @@ export default class Journal extends React.Component {
           <Layout>
             <Header style={{ background: 'dark', padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>J</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}></div>
-              </Content>
-              <Footer style={{ textAlign: 'center' }}>GA ©2019 Created by Justin Parrish</Footer>
-            </Layout>
 
+              <NoteForm
+                addNewNote={this.addNote} />
+
+              <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>User</Breadcrumb.Item>
+                <Breadcrumb.Item>Justin</Breadcrumb.Item>
+                <Breadcrumb.Item>Notes</Breadcrumb.Item>
+              </Breadcrumb>
+              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                
+                {fullJournal(this.state.journal)}
+              </div>
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>GA ©2019 Created by Justin Parrish</Footer>
           </Layout>
+
+        </Layout>
       </div>
-        );
-      }
-    }
+    );
+  }
+}
