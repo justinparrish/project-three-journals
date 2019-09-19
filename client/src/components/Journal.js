@@ -3,7 +3,6 @@ import 'antd/dist/antd.css'
 import { Typography, Avatar } from 'antd';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Modal, Button } from 'antd';
-
 import NoteForm from './NoteForm.js'
 import EditRegistrationInfo from './EditRegistrationInfo.js'
 
@@ -11,19 +10,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 const { Title } = Typography;
 
-const userName = (name) => {
-  return (
-    <Title level={4}>{name.name}</Title>
-  )
-}
-
-const mapName = (name) => {
-  return (
-    <h4>{name.map(userName)}</h4>
-  )
-}
-
-
+//----------------Note and Text -----------------------
 const noteTextAndTitle = (nText) => {
   return (
     <div className="note">
@@ -50,8 +37,31 @@ const fullJournal = (full) => {
       {full.map(fullNote)}
     </div>
   )
-
 }
+//------------------------Name-------------------
+const usersName = (uName) => {
+  return (
+    <span className="name">
+      {uName.name}
+    </span>
+  )
+}
+const fullName = (name) => {
+  return(
+    <span>
+      {name.register.map(usersName)}
+    </span>
+  )
+}
+
+const wholeName = (full) => {
+  return (
+    <span>
+      {full.map(fullName)}
+    </span>
+  )
+}
+//----------------Registration Info-----------
 
 export default class Journal extends React.Component {
   state = {
@@ -132,7 +142,7 @@ export default class Journal extends React.Component {
 
   render() {
     const { visible, loading } = this.state;
-    console.log(this.state.journal)
+    console.log(this.state.journal[0].Note)
     return (
       <div className="">
         <Layout style={{ minHeight: '100vh' }}>
@@ -143,7 +153,7 @@ export default class Journal extends React.Component {
               {/* First section of Side Bar */}
               <Menu.Item key="8">
                 <Avatar shape="circle" size="small" icon="user" />
-                {mapName(this.state.journal)}
+                {wholeName(this.state.journal)}
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
