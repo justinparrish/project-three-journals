@@ -4,7 +4,8 @@ import { Typography, Avatar } from 'antd';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Modal, Button } from 'antd';
 import NoteForm from './NoteForm.js'
-import EditRegistrationInfo from './EditRegistrationInfo.js'
+import RegistrationInfo from './RegistrationForm'
+import UserCredential from './UserCredentialsForm'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,7 +16,11 @@ const noteTextAndTitle = (nText) => {
   return (
     <div className="note">
 
-      <Title level={4}>{nText.title}<Icon type="delete" /></Title>
+      <Title level={4}>{nText.title}
+        <span className="delete">
+          <Icon type="delete" />
+        </span>
+      </Title>
       <p>{nText.note}</p>
     </div>
   )
@@ -47,7 +52,7 @@ const usersName = (uName) => {
   )
 }
 const fullName = (name) => {
-  return(
+  return (
     <span>
       {name.register.map(usersName)}
     </span>
@@ -166,25 +171,25 @@ export default class Journal extends React.Component {
                 {this.state.adminMode ? <span><Icon type="unlock" /> Admin</span> : <span><Icon type="lock" />User</span>}
               </Menu.Item>
 
-              { this.state.adminMode ?
-              <SubMenu title=
-                {<span><Icon type="eye" />
-                <span>View User Info</span></span>}>
+              {this.state.adminMode ?
+                <SubMenu title=
+                  {<span><Icon type="eye" />
+                    <span>View User Info</span></span>}>
                   <Menu.Item>Username: {this.state.journal[0].user[0].username}</Menu.Item>
                   <Menu.Item>Pin: {this.state.journal[0].user[0].pin}</Menu.Item>
-              </SubMenu>
-              : null}
+                </SubMenu>
+                : null}
 
-              { this.state.adminMode ?
-              <SubMenu title=
-                {<span><Icon type="eye" />
-                <span>View Account Info</span></span>}>
+              {this.state.adminMode ?
+                <SubMenu title=
+                  {<span><Icon type="eye" />
+                    <span>View Account Info</span></span>}>
                   <Menu.Item>Name: {this.state.journal[0].register[0].name}</Menu.Item>
                   <Menu.Item>Age: {this.state.journal[0].register[0].age}</Menu.Item>
                   <Menu.Item>State: {this.state.journal[0].register[0].state}</Menu.Item>
                   <Menu.Item>Email: {this.state.journal[0].register[0].email}</Menu.Item>
-              </SubMenu>
-              : null}
+                </SubMenu>
+                : null}
 
 
               <SubMenu key="sub2" title=
@@ -204,8 +209,8 @@ export default class Journal extends React.Component {
                 <Menu.Item key="6"><Icon type="delete" />Thursday's Shopping List</Menu.Item>
               </SubMenu>
               <Menu.Item key="7" onClick={this.showModal}>
-                <Icon type="setting" />
-                <span >Account Setting</span>
+                <Icon type="user-add" />
+                <span >New Account</span>
                 <Modal
                   visible={visible}
                   title="Title"
@@ -220,8 +225,11 @@ export default class Journal extends React.Component {
             </Button>,
                   ]}
                 >
-                  <EditRegistrationInfo
+                  <RegistrationInfo
                     createNewRegistrationInfo={this.addUserRegistration}
+                  />
+                  <UserCredential
+                    createNewUser={this.addUser}
                   />
                 </Modal>
               </Menu.Item>
@@ -240,7 +248,7 @@ export default class Journal extends React.Component {
 
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Justin</Breadcrumb.Item>
+                <Breadcrumb.Item>{this.state.journal[0].user[0].username}</Breadcrumb.Item>
                 <Breadcrumb.Item>Notes</Breadcrumb.Item>
               </Breadcrumb>
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
