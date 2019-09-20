@@ -62,8 +62,8 @@ export default class RegistrationForm extends Component {
                         <Input type="email" name="email" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" href="/registration/2" >
-                            Next: Create Credentials
+                        <Button type="primary" htmlType="submit">
+                            Add
                         </Button>
                     </Form.Item>
                 </Form>

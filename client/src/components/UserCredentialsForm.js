@@ -51,8 +51,8 @@ export default class UserCredentialsForm extends Component {
                         <Input type="number" name="pin" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" href="/journal">
-                            Complete
+                        <Button type="primary" htmlType="submit">
+                            Add
                         </Button>
                     </Form.Item>
                 </Form>
