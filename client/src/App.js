@@ -31,6 +31,7 @@ class App extends React.Component {
           <Route exact path="/registration/1" component={RegistrationForm} />
           <Route exact path="/journal" component={Journal} />
           <Route exact path="/note" component={NoteForm} />
+          <HomePage />
         </Switch>
       </Router>
     );
