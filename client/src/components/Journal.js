@@ -88,7 +88,7 @@ export default class Journal extends React.Component {
     newNote: true,
     adminMode: true
   }
-
+//------------------Toggling view of component------------------
   toggleCreateNote = () => {
     const newNote = !this.state.newNote
     this.setState({ newNote })
@@ -103,7 +103,7 @@ export default class Journal extends React.Component {
     console.log(collapsed);
     this.setState({ collapsed });
   };
-
+//--------------------Add Form Item------------------------
   addNote = (newNote) => {
     let journals = { ...this.state.journal[0] }
 
@@ -127,7 +127,7 @@ export default class Journal extends React.Component {
 
     this.setState({ journals })
   }
-
+//------------------Handling Modal------------------------
   showModal = () => {
     this.setState({
       visible: true,
@@ -144,7 +144,7 @@ export default class Journal extends React.Component {
   handleCancel = () => {
     this.setState({ visible: false });
   };
-
+//------------------Layout of Journal------------------------------
   render() {
     const { visible, loading } = this.state;
     console.log(this.state.journal[0].register[0].name)
@@ -191,7 +191,6 @@ export default class Journal extends React.Component {
                 </SubMenu>
                 : null}
 
-
               <SubMenu key="sub2" title=
                 {<span><Icon type="paper-clip" /><span>Notes</span></span>} >
                 <Menu.Item key="3"><Icon type="edit" />Bills to be Paid</Menu.Item>
@@ -200,7 +199,6 @@ export default class Journal extends React.Component {
               </SubMenu>
 
               {/* Notes Drop Down of Side Bar */}
-
               <SubMenu key="sub3" title=
                 {<span><Icon type="user" />
                   <span>Trash</span>
@@ -208,6 +206,7 @@ export default class Journal extends React.Component {
                 <Menu.Item key="5"><Icon type="delete" />Paid Bills</Menu.Item>
                 <Menu.Item key="6"><Icon type="delete" />Thursday's Shopping List</Menu.Item>
               </SubMenu>
+
               <Menu.Item key="7" onClick={this.showModal}>
                 <Icon type="user-add" />
                 <span >New Account</span>
@@ -223,8 +222,7 @@ export default class Journal extends React.Component {
                     <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
                       Submit
             </Button>,
-                  ]}
-                >
+                  ]}>
                   <RegistrationInfo
                     createNewRegistrationInfo={this.addUserRegistration}
                   />
@@ -233,9 +231,6 @@ export default class Journal extends React.Component {
                   />
                 </Modal>
               </Menu.Item>
-
-
-
 
             </Menu>
           </Sider>
@@ -251,14 +246,14 @@ export default class Journal extends React.Component {
                 <Breadcrumb.Item>{this.state.journal[0].user[0].username}</Breadcrumb.Item>
                 <Breadcrumb.Item>Notes</Breadcrumb.Item>
               </Breadcrumb>
-              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
 
+              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                 {fullJournal(this.state.journal)}
               </div>
+
             </Content>
             <Footer style={{ textAlign: 'center' }}>GA ©2019 Created by Justin Parrish</Footer>
           </Layout>
-
         </Layout>
       </div>
     );
