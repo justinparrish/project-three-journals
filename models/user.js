@@ -12,8 +12,8 @@ const UserSchema = new mongoose.Schema({
   pin: {
     type: Number,
     required: true,
-    unique: true,
-    maxlength: 4
+    maxlength: 4,
+    minlength: 3
   }
 })
 
