@@ -5,11 +5,9 @@ import { Typography } from 'antd';
 // import {BrowserRouter as Router} from 'react-router-dom'
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {Button} from 'antd';
+import '../App.css'
 
 
-// import NoteForm from './NoteForm.js'
-// import RegistrationForm from './RegistrationForm'
-// import UserCredentialsForm from './UserCredentialsForm'
 
 const { Title } = Typography;
 
@@ -18,9 +16,9 @@ export default class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="home-page">
                 <Title>Welcome to your Online Journal</Title>
-                <Button href="/registration/1" type="primary">
+                <Button href="/journal" type="primary">
                     Get Started Now
                 </Button>
             </div>
