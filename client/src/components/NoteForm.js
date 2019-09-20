@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import { Typography } from 'antd'
-// import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css'
 import {
     Form,
     Input,
-    // Tooltip,
-    // Icon,
-    // Cascader,
-    // Select,
-    // Row,
-    // Col,
-    // Checkbox,
     Button,
-    // AutoComplete,
 } from 'antd';
 
 const { Title } = Typography;
