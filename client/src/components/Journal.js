@@ -88,7 +88,39 @@ export default class Journal extends React.Component {
     newNote: true,
     adminMode: true
   }
-//------------------Toggling view of component------------------
+  //------------------------Fetching Data for user------------------------
+  componentDidMount = () => {
+    this.getNoteFromServer()
+  }
+
+
+  getNoteFromServer = () => {
+    fetch('/note')
+    .then(res => res.json())
+    .then(listOfNotes => {
+      this.setNoteList(listOfNotes)
+    })
+    console.log(fetch('/note').then(res => res.json()))
+  }
+
+  setNoteList = (list) => {
+    let journals = {...this.state.journal}
+
+    journals[0].Note[0].title = list[0].title
+    journals[0].Note[0].note = list[0].note
+
+    this.setState({ journals })
+  }
+
+  sendNewNoteToServer = (newNote) => {
+    fetch('/note/add', 
+    {
+      method: 'POST',
+      body: JSON.stringify(newNote),
+      headers: { 'Content-Type' : 'applications/json'}
+    })
+  }
+  //------------------Toggling view of component------------------
   toggleCreateNote = () => {
     const newNote = !this.state.newNote
     this.setState({ newNote })
@@ -103,7 +135,7 @@ export default class Journal extends React.Component {
     console.log(collapsed);
     this.setState({ collapsed });
   };
-//--------------------Add Form Item------------------------
+  //--------------------Add Form Item------------------------
   addNote = (newNote) => {
     let journals = { ...this.state.journal[0] }
 
@@ -127,7 +159,7 @@ export default class Journal extends React.Component {
 
     this.setState({ journals })
   }
-//------------------Handling Modal------------------------
+  //------------------Handling Modal------------------------
   showModal = () => {
     this.setState({
       visible: true,
@@ -144,7 +176,7 @@ export default class Journal extends React.Component {
   handleCancel = () => {
     this.setState({ visible: false });
   };
-//------------------Layout of Journal------------------------------
+  //------------------Layout of Journal------------------------------
   render() {
     const { visible, loading } = this.state;
     console.log(this.state.journal[0].register[0].name)
@@ -239,7 +271,7 @@ export default class Journal extends React.Component {
             <Content style={{ margin: '0 16px' }}>
 
               {this.state.newNote ? <NoteForm
-                addNewNote={this.addNote} /> : null}
+                addNewNote={this.sendNewNoteToServer} /> : null}
 
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
