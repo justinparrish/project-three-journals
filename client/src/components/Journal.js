@@ -106,19 +106,20 @@ export default class Journal extends React.Component {
   setNoteList = (list) => {
     let journals = {...this.state.journal}
 
-    journals[0].Note[0].title = list[0].title
-    journals[0].Note[0].note = list[0].note
+    journals[0].Note = list
+    // journals[0].Note[0].note = list[0].note
 
     this.setState({ journals })
   }
 
   sendNewNoteToServer = (newNote) => {
-    fetch('/note/add', 
+    fetch('/note', 
     {
       method: 'POST',
       body: JSON.stringify(newNote),
-      headers: { 'Content-Type' : 'applications/json'}
-    })
+      headers: { 'Content-Type' : 'application/json'}
+    }
+    ).then(() => this.getNoteFromServer())
   }
   //------------------Toggling view of component------------------
   toggleCreateNote = () => {
