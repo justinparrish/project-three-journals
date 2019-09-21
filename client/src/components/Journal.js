@@ -66,7 +66,51 @@ const wholeName = (full) => {
     </span>
   )
 }
-//----------------Registration Info-----------
+//----------------Username & Pin-----------
+const username = (uniqueName) => {
+  return (
+    <span>
+      {uniqueName.username}
+    </span>
+  )
+}
+const fullUsername = (full) => {
+  return (
+    <span>
+      {full.user.map(username)}
+    </span>
+  )
+}
+const wholeUsername = (full) => {
+  return (
+    <span>
+      {full.map(fullUsername)}
+    </span>
+  )
+}
+const pin = (pinDigits) => {
+  return (
+    <span>
+      {pinDigits.pin}
+    </span>
+  )
+}
+
+const fullPin = (full) => {
+  return (
+    <span>
+      {full.user.map(pin)}
+    </span>
+  )
+}
+
+const wholePin = (full) => {
+  return (
+    <span>
+      {full.map(fullPin)}
+    </span>
+  )
+}
 
 export default class Journal extends React.Component {
   state = {
@@ -89,8 +133,35 @@ export default class Journal extends React.Component {
     adminMode: true
   }
   //------------------------Fetching Data for user------------------------
+  getUserFromServer = () => {
+    fetch('/user')
+      .then(res => res.json())
+      .then(listOfUsers => {
+        this.setUserList(listOfUsers)
+      })
+      console.log(fetch('/user').then(res => res.json()))
+  }
+
+  setUserList = (list) => {
+    let journals = {...this.state.journal}
+
+    journals[0].user = list
+
+    this.setState({journals})
+  }
+
+  sendNewUserToServer = (newUser) => {
+    fetch('/user', {
+      method: 'POST',
+      body: JSON.stringify(newUser),
+      headers: { 'Content-Type' : 'application/json'}
+    }
+    ).then(() => this.getUserFromServer())
+  }
+  //------------------------Fetching Data for note------------------------
   componentDidMount = () => {
     this.getNoteFromServer()
+    this.getUserFromServer()
   }
 
 
@@ -208,8 +279,8 @@ export default class Journal extends React.Component {
                 <SubMenu title=
                   {<span><Icon type="eye" />
                     <span>View User Info</span></span>}>
-                  <Menu.Item>Username: {this.state.journal[0].user[0].username}</Menu.Item>
-                  <Menu.Item>Pin: {this.state.journal[0].user[0].pin}</Menu.Item>
+                  <Menu.Item>Username:  {wholeUsername(this.state.journal)}</Menu.Item>
+                  <Menu.Item>Pin: {wholePin(this.state.journal)}</Menu.Item>
                 </SubMenu>
                 : null}
 
@@ -276,12 +347,13 @@ export default class Journal extends React.Component {
 
               <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>{this.state.journal[0].user[0].username}</Breadcrumb.Item>
+                <Breadcrumb.Item> {wholeUsername(this.state.journal)}</Breadcrumb.Item>
                 <Breadcrumb.Item>Notes</Breadcrumb.Item>
               </Breadcrumb>
 
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                 {fullJournal(this.state.journal)}
+               
               </div>
 
             </Content>
