@@ -26,27 +26,33 @@ const noteTextAndTitle = (nText) =>
   )
 
 const fullNote = (note) => (<div>{note.Note.map(noteTextAndTitle)}</div>)
-
 const fullJournal = (full) => (<div>{full.map(fullNote)}</div>)
-//------------------------Name-------------------
+
+//-----------------Registration Info-------------------
 const usersName = (uName) => (<span className="name">{uName.name}</span>)
-
 const fullName = (name) => (<span>{name.register.map(usersName)}</span>)
-
 const wholeName = (full) => (<span>{full.map(fullName)}</span>)
+
+const userAge = (digit) => (<span>{digit.age}</span>)
+const fullAge = (age) => (<span>{age.register.map(userAge)}</span>)
+const wholeAge = (full) => (<span>{full.map(fullAge)}</span>)
+
+const userState = (stateText) => (<span>{stateText.state}</span>)
+const fullState = (state) => (<span>{state.register.map(userState)}</span>)
+const wholeState = (full) => (<span>{full.map(fullState)}</span>)
+
+const userEmail = (emailText) => (<span>{emailText.email}</span>)
+const fullEmail = (email) => (<span>{email.register.map(userEmail)}</span>)
+const wholeEmail = (full) => (<span>{full.map(fullEmail)}</span>)
+
 //----------------Username & Pin-----------------
 const username = (uniqueName) => (<span>{uniqueName.username}</span>)
-
 const fullUsername = (full) => (<span>{full.user.map(username)}</span>)
-
 const wholeUsername = (full) => (<span>{full.map(fullUsername)}</span>)
 
 const pin = (pinDigits) => (<span>{pinDigits.pin}</span>)
-
 const fullPin = (full) => (<span>{full.user.map(pin)}</span>)
-
 const wholePin = (full) => (<span>{full.map(fullPin)}</span>)
-//----------------Registration Info-----------------
 
 
 export default class Journal extends React.Component {
@@ -69,6 +75,38 @@ export default class Journal extends React.Component {
     newNote: true,
     adminMode: true
   }
+  //------------Component Mounts----------
+  componentDidMount = () => {
+    this.getNoteFromServer()
+    this.getUserFromServer()
+    this.getRegInfoFromServer()
+  }
+
+
+  //-----------------Fetching Registration Info for user---------------------
+  getRegInfoFromServer = () => {
+    fetch('/registration')
+      .then(res => res.json())
+      .then(listOfInfo => {
+        this.setRegInfoList(listOfInfo)
+      })
+  }
+
+  setRegInfoList = (list) => {
+    let journals = {...this.state.journal}
+
+    journals[0].register = list
+
+    this.setState({ journals })
+  }
+   sendRegInfoToServer = (newRegInfo) => {
+     fetch('/registration', {
+       method: 'POST',
+       body: JSON.stringify(newRegInfo),
+       headers: { 'Content-Type': 'application/json' }
+     }
+     ).then(() => this.getRegInfoFromServer())
+   }
   //------------------------Fetching Data for user------------------------
   getUserFromServer = () => {
     fetch('/user')
@@ -96,11 +134,6 @@ export default class Journal extends React.Component {
     ).then(() => this.getUserFromServer())
   }
   //------------------------Fetching Data for note------------------------
-  componentDidMount = () => {
-    this.getNoteFromServer()
-    this.getUserFromServer()
-  }
-
 
   getNoteFromServer = () => {
     fetch('/note')
@@ -188,7 +221,7 @@ export default class Journal extends React.Component {
   //------------------Layout of Journal------------------------------
   render() {
     const { visible, loading } = this.state;
-    console.log(this.state.journal[0].register[0].name)
+    
     return (
       <div className="journal-container">
         <Layout style={{ minHeight: '100vh' }}>
@@ -225,10 +258,10 @@ export default class Journal extends React.Component {
                 <SubMenu title=
                   {<span><Icon type="eye" />
                     <span>View Account Info</span></span>}>
-                  <Menu.Item>Name: {this.state.journal[0].register[0].name}</Menu.Item>
-                  <Menu.Item>Age: {this.state.journal[0].register[0].age}</Menu.Item>
-                  <Menu.Item>State: {this.state.journal[0].register[0].state}</Menu.Item>
-                  <Menu.Item>Email: {this.state.journal[0].register[0].email}</Menu.Item>
+                  <Menu.Item>Name: {wholeName(this.state.journal)}</Menu.Item>
+                  <Menu.Item>Age: {wholeAge(this.state.journal)}</Menu.Item>
+                  <Menu.Item>State: {wholeState(this.state.journal)}</Menu.Item>
+                  <Menu.Item>Email: {wholeEmail(this.state.journal)}</Menu.Item>
                 </SubMenu>
                 : null}
 
@@ -265,7 +298,7 @@ export default class Journal extends React.Component {
             </Button>,
                   ]}>
                   <RegistrationInfo
-                    createNewRegistrationInfo={this.addUserRegistration}
+                    createNewRegistrationInfo={this.sendRegInfoToServer}
                   />
                   <UserCredential
                     createNewUser={this.sendNewUserToServer}
