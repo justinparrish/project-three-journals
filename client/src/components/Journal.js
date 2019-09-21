@@ -286,7 +286,7 @@ export default class Journal extends React.Component {
                 <span >New Account</span>
                 <Modal
                   visible={visible}
-                  title="Title"
+                  title="New Account"
                   onOk={this.handleOk}
                   onCancel={this.handleCancel}
                   footer={[
