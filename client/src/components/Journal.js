@@ -12,8 +12,8 @@ const { SubMenu } = Menu;
 const { Title } = Typography;
 
 //----------------Note and Text -----------------------
-const noteTextAndTitle = (nText) => {
-  return (
+const noteTextAndTitle = (nText) =>
+  (
     <div className="note">
 
       <Title level={4}>{nText.title}
@@ -24,93 +24,30 @@ const noteTextAndTitle = (nText) => {
       <p>{nText.note}</p>
     </div>
   )
-}
 
-const fullNote = (note) => {
-  return (
-    <div>
-      {/* {note.user.map(userName)} */}
-      {note.Note.map(noteTextAndTitle)}
-    </div>
-  )
+const fullNote = (note) => (<div>{note.Note.map(noteTextAndTitle)}</div>)
 
-}
-
-const fullJournal = (full) => {
-  return (
-    <div>
-      {full.map(fullNote)}
-    </div>
-  )
-}
+const fullJournal = (full) => (<div>{full.map(fullNote)}</div>)
 //------------------------Name-------------------
-const usersName = (uName) => {
-  return (
-    <span className="name">
-      {uName.name}
-    </span>
-  )
-}
-const fullName = (name) => {
-  return (
-    <span>
-      {name.register.map(usersName)}
-    </span>
-  )
-}
+const usersName = (uName) => (<span className="name">{uName.name}</span>)
 
-const wholeName = (full) => {
-  return (
-    <span>
-      {full.map(fullName)}
-    </span>
-  )
-}
-//----------------Username & Pin-----------
-const username = (uniqueName) => {
-  return (
-    <span>
-      {uniqueName.username}
-    </span>
-  )
-}
-const fullUsername = (full) => {
-  return (
-    <span>
-      {full.user.map(username)}
-    </span>
-  )
-}
-const wholeUsername = (full) => {
-  return (
-    <span>
-      {full.map(fullUsername)}
-    </span>
-  )
-}
-const pin = (pinDigits) => {
-  return (
-    <span>
-      {pinDigits.pin}
-    </span>
-  )
-}
+const fullName = (name) => (<span>{name.register.map(usersName)}</span>)
 
-const fullPin = (full) => {
-  return (
-    <span>
-      {full.user.map(pin)}
-    </span>
-  )
-}
+const wholeName = (full) => (<span>{full.map(fullName)}</span>)
+//----------------Username & Pin-----------------
+const username = (uniqueName) => (<span>{uniqueName.username}</span>)
 
-const wholePin = (full) => {
-  return (
-    <span>
-      {full.map(fullPin)}
-    </span>
-  )
-}
+const fullUsername = (full) => (<span>{full.user.map(username)}</span>)
+
+const wholeUsername = (full) => (<span>{full.map(fullUsername)}</span>)
+
+const pin = (pinDigits) => (<span>{pinDigits.pin}</span>)
+
+const fullPin = (full) => (<span>{full.user.map(pin)}</span>)
+
+const wholePin = (full) => (<span>{full.map(fullPin)}</span>)
+//----------------Registration Info-----------------
+
 
 export default class Journal extends React.Component {
   state = {
@@ -139,22 +76,22 @@ export default class Journal extends React.Component {
       .then(listOfUsers => {
         this.setUserList(listOfUsers)
       })
-      console.log(fetch('/user').then(res => res.json()))
+    console.log(fetch('/user').then(res => res.json()))
   }
 
   setUserList = (list) => {
-    let journals = {...this.state.journal}
+    let journals = { ...this.state.journal }
 
     journals[0].user = list
 
-    this.setState({journals})
+    this.setState({ journals })
   }
 
   sendNewUserToServer = (newUser) => {
     fetch('/user', {
       method: 'POST',
       body: JSON.stringify(newUser),
-      headers: { 'Content-Type' : 'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     }
     ).then(() => this.getUserFromServer())
   }
@@ -167,15 +104,15 @@ export default class Journal extends React.Component {
 
   getNoteFromServer = () => {
     fetch('/note')
-    .then(res => res.json())
-    .then(listOfNotes => {
-      this.setNoteList(listOfNotes)
-    })
+      .then(res => res.json())
+      .then(listOfNotes => {
+        this.setNoteList(listOfNotes)
+      })
     console.log(fetch('/note').then(res => res.json()))
   }
 
   setNoteList = (list) => {
-    let journals = {...this.state.journal}
+    let journals = { ...this.state.journal }
 
     journals[0].Note = list
     // journals[0].Note[0].note = list[0].note
@@ -184,12 +121,12 @@ export default class Journal extends React.Component {
   }
 
   sendNewNoteToServer = (newNote) => {
-    fetch('/note', 
-    {
-      method: 'POST',
-      body: JSON.stringify(newNote),
-      headers: { 'Content-Type' : 'application/json'}
-    }
+    fetch('/note',
+      {
+        method: 'POST',
+        body: JSON.stringify(newNote),
+        headers: { 'Content-Type': 'application/json' }
+      }
     ).then(() => this.getNoteFromServer())
   }
   //------------------Toggling view of component------------------
@@ -331,7 +268,7 @@ export default class Journal extends React.Component {
                     createNewRegistrationInfo={this.addUserRegistration}
                   />
                   <UserCredential
-                    createNewUser={this.addUser}
+                    createNewUser={this.sendNewUserToServer}
                   />
                 </Modal>
               </Menu.Item>
@@ -353,7 +290,7 @@ export default class Journal extends React.Component {
 
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                 {fullJournal(this.state.journal)}
-               
+
               </div>
 
             </Content>
