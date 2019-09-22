@@ -22,7 +22,7 @@ a typical teenager. The idea of the Online Journal started as a thought of wonde
 * Postman
 
 ## Wireframes
-![atl text](images/wf-p3.png "wireframe image")
+![atl text](images/wf-p3.jpg "wireframe image")
 
 
 ## Entity Relationship Diagram (ERD)
