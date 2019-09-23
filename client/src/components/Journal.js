@@ -213,6 +213,10 @@ export default class Journal extends React.Component {
     }, 3000)
   }
 
+  handleCancel = () => {
+    this.setState({ visible: false });
+  };
+
   //------------------Layout of Journal------------------------------
   render() {
     const { visible, loading } = this.state;
@@ -227,7 +231,7 @@ export default class Journal extends React.Component {
               {/* First section of Side Bar */}
               <Menu.Item key="8">
                 <Avatar shape="square" size="" >User</Avatar>
- {wholeName(this.state.journal)}
+                {wholeName(this.state.journal)}
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
