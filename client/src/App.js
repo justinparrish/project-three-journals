@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          {/* <Route exact path="/home" component={HomePage} /> */}
+          <Route exact path="/home" component={HomePage} />
           <Route exact path="/registration/2" component={UserCredentialsForm} />
           <Route exact path="/registration/1" component={RegistrationForm} />
           {/* <Route exact path="/journal" component={Journal} /> */}
