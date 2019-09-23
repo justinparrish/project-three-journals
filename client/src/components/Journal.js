@@ -6,7 +6,7 @@ import { Modal, Button } from 'antd';
 import NoteForm from './NoteForm.js'
 import RegistrationInfo from './RegistrationForm'
 import UserCredential from './UserCredentialsForm'
-import { array } from 'prop-types';
+
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -93,20 +93,20 @@ export default class Journal extends React.Component {
   }
 
   setRegInfoList = (list) => {
-    let journals = {...this.state.journal}
+    let journals = { ...this.state.journal }
 
     journals[0].register = list
 
     this.setState({ journals })
   }
-   sendRegInfoToServer = (newRegInfo) => {
-     fetch('/registration', {
-       method: 'POST',
-       body: JSON.stringify(newRegInfo),
-       headers: { 'Content-Type': 'application/json' }
-     }
-     ).then(() => this.getRegInfoFromServer())
-   }
+  sendRegInfoToServer = (newRegInfo) => {
+    fetch('/registration', {
+      method: 'POST',
+      body: JSON.stringify(newRegInfo),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    ).then(() => this.getRegInfoFromServer())
+  }
   //------------------------Fetching Data for user------------------------
   getUserFromServer = () => {
     fetch('/user')
@@ -203,25 +203,20 @@ export default class Journal extends React.Component {
   }
   //------------------Handling Modal------------------------
   showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+    this.setState({ visible: true, })
+  }
 
   handleOk = () => {
     this.setState({ loading: true });
     setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 3000);
-  };
+      this.setState({ loading: false, visible: false })
+    }, 3000)
+  }
 
-  handleCancel = () => {
-    this.setState({ visible: false });
-  };
   //------------------Layout of Journal------------------------------
   render() {
     const { visible, loading } = this.state;
-    
+
     return (
       <div className="journal-container">
         <Layout style={{ minHeight: '100vh' }}>
@@ -231,8 +226,8 @@ export default class Journal extends React.Component {
 
               {/* First section of Side Bar */}
               <Menu.Item key="8">
-                <Avatar shape="square" size="" >U</Avatar>
-                &nbsp; &nbsp; {wholeName(this.state.journal)}
+                <Avatar shape="square" size="" >User</Avatar>
+ {wholeName(this.state.journal)}
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
@@ -290,12 +285,10 @@ export default class Journal extends React.Component {
                   onOk={this.handleOk}
                   onCancel={this.handleCancel}
                   footer={[
-                    <Button key="back" onClick={this.handleCancel}>
-                      Return
-            </Button>,
-                    <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+                    <Button key="submit" type="primary"
+                      loading={loading} onClick={this.handleOk}>
                       Submit
-            </Button>,
+                    </Button>,
                   ]}>
                   <RegistrationInfo
                     createNewRegistrationInfo={this.sendRegInfoToServer}
@@ -309,7 +302,7 @@ export default class Journal extends React.Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header style={{ background: 'dark', padding: 0 }} />
+            <Header style={{ background: '', padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
 
               {this.state.newNote ? <NoteForm

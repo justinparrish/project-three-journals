@@ -47,7 +47,7 @@ export default class UserCredentialsForm extends Component {
                     <Form.Item label="Username">
                         <Input type="text" name="username" onChange={this.handleInputValues} />
                     </Form.Item>
-                    <Form.Item label="Pin">
+                    <Form.Item label="Pin" className="pin-label">
                         <Input type="number" name="pin" onChange={this.handleInputValues} />
                     </Form.Item>
                     <Form.Item>
