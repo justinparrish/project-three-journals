@@ -73,28 +73,14 @@ export default class Journal extends React.Component {
     collapsed: false,
     visible: false,
     loading: false,
-    newNote: true,
-    adminMode: true,
-    noteDelete: true
+    newNote: false,
+    adminMode: false
   }
   //------------Component Mounts----------
   componentDidMount = () => {
     this.getNoteFromServer()
     this.getUserFromServer()
     this.getRegInfoFromServer()
-  }
-
-  //---------------Deleting Entity--------------------
-  deleteOneNote = (evnt) => {
-    const notes = {...this.state.journal[0].Note[0]}
-
-    let index = notes.indexOf(evnt.target.value)
-
-    if(index !== -1) {
-      array.splice(index,1)
-      this.setState({Note: notes})
-    }
-
   }
 
   //-----------------Fetching Registration Info for user---------------------
@@ -245,8 +231,8 @@ export default class Journal extends React.Component {
 
               {/* First section of Side Bar */}
               <Menu.Item key="8">
-                <Avatar shape="circle" size="small" icon="user" />
-                {wholeName(this.state.journal)}
+                <Avatar shape="square" size="" >U</Avatar>
+                &nbsp; &nbsp; {wholeName(this.state.journal)}
               </Menu.Item>
 
               {/* User Drop Down of Side Bar */}
@@ -256,7 +242,7 @@ export default class Journal extends React.Component {
               </Menu.Item>
 
               <Menu.Item onClick={this.toggleAdminMode}>
-                {this.state.adminMode ? <span><Icon type="unlock" /> Admin</span> : <span><Icon type="lock" />User</span>}
+                {this.state.adminMode ? <span><Icon type="unlock" /> Hide Info</span> : <span><Icon type="lock" />Account Info</span>}
               </Menu.Item>
 
               {this.state.adminMode ?
