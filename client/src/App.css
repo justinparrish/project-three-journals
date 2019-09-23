@@ -1,5 +1,6 @@
 .note {
-  background-color: aquamarine
+  border-bottom: dotted;
+  margin-bottom: 20px;
 }
 
 .home-page {

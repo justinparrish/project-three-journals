@@ -6,6 +6,7 @@ import { Modal, Button } from 'antd';
 import NoteForm from './NoteForm.js'
 import RegistrationInfo from './RegistrationForm'
 import UserCredential from './UserCredentialsForm'
+import { array } from 'prop-types';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -16,9 +17,9 @@ const noteTextAndTitle = (nText) =>
   (
     <div className="note">
 
-      <Title level={4}>{nText.title}
+      <Title level={3}>{nText.title}
         <span className="delete">
-          <Icon type="delete" />
+          {/* <Icon type="delete"/> */}
         </span>
       </Title>
       <p>{nText.note}</p>
@@ -73,7 +74,8 @@ export default class Journal extends React.Component {
     visible: false,
     loading: false,
     newNote: true,
-    adminMode: true
+    adminMode: true,
+    noteDelete: true
   }
   //------------Component Mounts----------
   componentDidMount = () => {
@@ -82,6 +84,18 @@ export default class Journal extends React.Component {
     this.getRegInfoFromServer()
   }
 
+  //---------------Deleting Entity--------------------
+  deleteOneNote = (evnt) => {
+    const notes = {...this.state.journal[0].Note[0]}
+
+    let index = notes.indexOf(evnt.target.value)
+
+    if(index !== -1) {
+      array.splice(index,1)
+      this.setState({Note: notes})
+    }
+
+  }
 
   //-----------------Fetching Registration Info for user---------------------
   getRegInfoFromServer = () => {
