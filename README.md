@@ -2,7 +2,7 @@
 
 ## Overview
 The Online Journal is an online/mobile application that can be used by anyone from professionals to
-a typical teenager. The idea of the Online Journal started as a thought of wondering if there were any online notepads or journals that require credentials to access. Due to it having authenications, no one else can access your information other than you, unless you provide your credentials to someone. In order to create this application, there was mostly `React` and `Mongoose` used in order to presist any data stored into your journal.
+a typical teenager. The idea of the Online Journal started as a thought of wondering if there were any online notepads or journals that require credentials to access. The reason for credentials on a journal is to help reduce the risk of having things like your identity stolen from having personal information stored inside of your journal. Due to it having authenications, no one else can access your information other than you, unless you provide your credentials to someone. In order to create this application, there was mostly `React` and `Mongoose` used in order to presist any data stored into your journal.
 
 
 ## Links
